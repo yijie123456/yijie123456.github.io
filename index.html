@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cool Progress Bar</title>
+  <title>Animated Progress Bar</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -28,6 +28,23 @@
       align-items: center;
       position: relative;
       width: 100%;
+      animation: fadeInUp 1s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    .step:nth-child(1) { animation-delay: 0.2s; }
+    .step:nth-child(2) { animation-delay: 0.6s; }
+    .step:nth-child(3) { animation-delay: 1s; }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .circle {
@@ -40,6 +57,15 @@
       justify-content: center;
       z-index: 1;
       position: relative;
+      transform: scale(0);
+      animation: scaleIn 0.4s ease forwards;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes scaleIn {
+      to {
+        transform: scale(1);
+      }
     }
 
     .step.complete .circle {
@@ -48,7 +74,7 @@
 
     .step.complete .circle::before {
       content: "";
-      background-image: url('images/tick.png'); /* <-- your image path */
+      background-image: url('images/tick.png'); /* 👈 Your tick image path */
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -57,6 +83,17 @@
       position: absolute;
       top: 10px;
       left: 10px;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: tickFade 0.6s ease forwards;
+      animation-delay: 1.4s;
+    }
+
+    @keyframes tickFade {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .label {
@@ -74,14 +111,23 @@
       height: 5px;
       background-color: #ccc;
       z-index: 0;
-    }
-
-    .step:last-child::after {
-      display: none;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: fillLine 1s ease-out forwards;
     }
 
     .step.complete::after {
       background-color: #4caf50;
+    }
+
+    @keyframes fillLine {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .step:last-child::after {
+      display: none;
     }
 
     @media (max-width: 600px) {
@@ -125,4 +171,5 @@
 
 </body>
 </html>
+
 
