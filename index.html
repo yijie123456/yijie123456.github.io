@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Animated Progress Bar</title>
+  <title>Animated Progress Bar with Tick</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -37,14 +37,8 @@
     .step:nth-child(3) { animation-delay: 1s; }
 
     @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .circle {
@@ -57,36 +51,26 @@
       justify-content: center;
       z-index: 1;
       position: relative;
-      transform: scale(0);
+      overflow: hidden;
       animation: scaleIn 0.4s ease forwards;
-      animation-delay: 1.2s;
     }
 
     @keyframes scaleIn {
-      to {
-        transform: scale(1);
-      }
+      from { transform: scale(0); }
+      to { transform: scale(1); }
     }
 
     .step.complete .circle {
       background-color: #4caf50;
     }
 
-    .step.complete .circle::before {
-      content: "";
-      background-image: url('images/tick.png'); /* 👈 Your tick image path */
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
+    .circle img {
       width: 30px;
       height: 30px;
-      position: absolute;
-      top: 10px;
-      left: 10px;
       opacity: 0;
       transform: scale(0.5);
       animation: tickFade 0.6s ease forwards;
-      animation-delay: 1.4s;
+      animation-delay: 1.2s;
     }
 
     @keyframes tickFade {
@@ -156,20 +140,28 @@
 
   <div class="progress-container">
     <div class="step complete">
-      <div class="circle"></div>
+      <div class="circle">
+        <img src="images/tick.png" alt="tick">
+      </div>
       <div class="label">Research</div>
     </div>
     <div class="step complete">
-      <div class="circle"></div>
+      <div class="circle">
+        <img src="images/tick.png" alt="tick">
+      </div>
       <div class="label">Tools</div>
     </div>
     <div class="step complete">
-      <div class="circle"></div>
+      <div class="circle">
+        <img src="images/tick.png" alt="tick">
+      </div>
       <div class="label">Programs</div>
     </div>
   </div>
 
 </body>
 </html>
+
+
 
 
