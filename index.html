@@ -3,11 +3,15 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Scroll to Top Button</title>
-  
+
   <!-- Font Awesome for arrow icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    html {
+      scroll-behavior: smooth; /* This makes the scroll smooth */
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 20px;
@@ -30,6 +34,7 @@
       width: 50px;
       height: 50px;
       text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     #myBtn i {
@@ -59,7 +64,7 @@
   // Get the button
   let mybutton = document.getElementById("myBtn");
 
-  // Show the button when user scrolls down 20px
+  // Show button when scrolled down 20px
   window.onscroll = function() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       mybutton.style.display = "block";
@@ -68,15 +73,15 @@
     }
   };
 
-  // Scroll to top when button is clicked
+  // Scroll to top function
   function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 
 </body>
 </html>
+
 
 
 
