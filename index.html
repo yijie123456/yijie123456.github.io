@@ -1,166 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Animated Progress Bar with Tick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scroll to Top Button</title>
+  
+  <!-- Font Awesome for arrow icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
     }
 
-    .progress-container {
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-      max-width: 700px;
-      position: relative;
-    }
-
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      width: 100%;
-      animation: fadeInUp 1s ease-in-out forwards;
-      opacity: 0;
-    }
-
-    .step:nth-child(1) { animation-delay: 0.2s; }
-    .step:nth-child(2) { animation-delay: 0.6s; }
-    .step:nth-child(3) { animation-delay: 1s; }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .circle {
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
       width: 50px;
       height: 50px;
-      border-radius: 50%;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-      position: relative;
-      overflow: hidden;
-      animation: scaleIn 0.4s ease forwards;
+      text-align: center;
     }
 
-    @keyframes scaleIn {
-      from { transform: scale(0); }
-      to { transform: scale(1); }
+    #myBtn i {
+      font-size: 20px;
     }
 
-    .step.complete .circle {
-      background-color: #4caf50;
-    }
-
-    .circle img {
-      width: 30px;
-      height: 30px;
-      opacity: 0;
-      transform: scale(0.5);
-      animation: tickFade 0.6s ease forwards;
-      animation-delay: 1.2s;
-    }
-
-    @keyframes tickFade {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .label {
-      margin-top: 10px;
-      color: #333;
-      font-weight: 500;
-    }
-
-    .step::after {
-      content: '';
-      position: absolute;
-      top: 25px;
-      left: 50%;
-      width: 100%;
-      height: 5px;
-      background-color: #ccc;
-      z-index: 0;
-      transform: scaleX(0);
-      transform-origin: left;
-      animation: fillLine 1s ease-out forwards;
-    }
-
-    .step.complete::after {
-      background-color: #4caf50;
-    }
-
-    @keyframes fillLine {
-      to {
-        transform: scaleX(1);
-      }
-    }
-
-    .step:last-child::after {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      .progress-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .step {
-        flex-direction: row;
-        margin-bottom: 20px;
-      }
-
-      .label {
-        margin-top: 0;
-        margin-left: 10px;
-      }
-
-      .step::after {
-        display: none;
-      }
+    #myBtn:hover {
+      background-color: #555;
     }
   </style>
 </head>
 <body>
 
-  <div class="progress-container">
-    <div class="step complete">
-      <div class="circle">
-        <img src="images/tick.png" alt="tick">
-      </div>
-      <div class="label">Research</div>
-    </div>
-    <div class="step complete">
-      <div class="circle">
-        <img src="images/tick.png" alt="tick">
-      </div>
-      <div class="label">Tools</div>
-    </div>
-    <div class="step complete">
-      <div class="circle">
-        <img src="images/tick.png" alt="tick">
-      </div>
-      <div class="label">Programs</div>
-    </div>
-  </div>
+<!-- Back to Top Button -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Sample Content -->
+<div style="background-color:black;color:white;padding:30px">HELLO</div>
+<div style="background-color:lightgrey;padding:30px 30px 2500px">
+  HELLO KITTY MIAW MIAW <strong>EDMUND JUSTIN ELIUS</strong>.
+</div>
+
+<!-- JavaScript -->
+<script>
+  // Get the button
+  let mybutton = document.getElementById("myBtn");
+
+  // Show the button when user scrolls down 20px
+  window.onscroll = function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  };
+
+  // Scroll to top when button is clicked
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
 
 </body>
 </html>
+
 
 
 
